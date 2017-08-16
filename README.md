@@ -20,7 +20,6 @@ wrapped up in the executable (so need to even install Python).
 ##### Version History:
 
 - v1.0b 15/08/17: At the moment alert messages will not take the top focus from 
-other windows but it may possible to change this behaviour can be changed if required 
-in the future.
+other windows but it may possible to change this behaviour in the future.
  
 
