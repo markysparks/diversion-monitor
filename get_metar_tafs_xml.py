@@ -2,6 +2,7 @@ import sys
 from lxml import etree
 import socket
 import requests
+import pickle
 
 if sys.version_info[0] < 3:
     import tkMessageBox
@@ -21,6 +22,9 @@ def update_report_data(icao0, icao1, icao2, icao3, icao4, icao5, icao6, icao7, i
     socket.setdefaulttimeout(5)
 
     icao_string = icao0+','+icao1+','+icao2+','+icao3+','+icao4+','+icao5+','+icao6+','+icao7+','+icao8+','+icao9
+    icao_list = [icao0, icao1, icao2, icao3, icao4, icao5, icao6, icao7, icao8, icao9]
+
+    save_icao_list(icao_list) # Save the currently entered ICAO's between sessions.
 
     # Query WFS server to get the latest METAR/TAF XML data
     try:
@@ -85,6 +89,19 @@ def get_latest_taf(icao):
                         issue_time = issue_time.text
 
     return issue_time, taf
+
+
+def save_icao_list(icao_list):
+    """Saves the present ICAO's to a file"""
+    try:
+        with open('.icao_list.conf', 'wb') as icaos:
+            pickle.dump(icao_list, icaos)
+
+    except IOError as err:
+        print('ICAO list save file error: ' + str (err))
+    except pickle.PickleError as perr:
+        print('ICAO list save pickling error: ' + str(perr))
+
 
 # Test this module
 if __name__ == "__main__":
