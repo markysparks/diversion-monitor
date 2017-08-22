@@ -194,6 +194,20 @@ class UpdateFields:
         self.status_change = False
         self.alert_string = ''
 
+    def set_icao_fields(self, main_view, icao_list):
+        """set the ICAO fields to the last set if available"""
+        if icao_list:
+            main_view.app_view.icao0.set(icao_list[0])
+            main_view.app_view.icao1.set(icao_list[1])
+            main_view.app_view.icao2.set(icao_list[2])
+            main_view.app_view.icao3.set(icao_list[3])
+            main_view.app_view.icao4.set(icao_list[4])
+            main_view.app_view.icao5.set(icao_list[5])
+            main_view.app_view.icao6.set(icao_list[6])
+            main_view.app_view.icao7.set(icao_list[7])
+            main_view.app_view.icao8.set(icao_list[8])
+            main_view.app_view.icao9.set(icao_list[9])
+
     def set_colourstates_grey(self, main_view):
         """Set all the colourstate fields to grey (used at app startup)"""
         main_view.app_view.icao0_prev_colour_field.configure(image=self.grey)
