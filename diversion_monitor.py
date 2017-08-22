@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import pickle
 import sys
 import logging
 
@@ -92,6 +93,7 @@ class Controller:
 
         """Set the colour state fields to initially all be grey"""
         self.update_fields.set_colourstates_grey(self.main_view)
+        self.update_fields.set_icao_fields(self.main_view, self.restore_icao_list())
 
     def run(self):
         """Start the application"""
@@ -113,7 +115,7 @@ class Controller:
     def data_check_sched(self):
         """Set a schedule for collecting and checking for messages from the WFS server using a background scheduler."""
         scheduler = BackgroundScheduler()
-        trigger = IntervalTrigger(seconds=500)
+        trigger = IntervalTrigger(seconds=300) # check every 5 mins (300msec)
         scheduler.add_job(self.check_metars_tafs, trigger)
         scheduler.start()
 
@@ -243,6 +245,17 @@ class Controller:
         self.main_view.app_view.icao7.set(self.main_view.app_view.icao7.get().upper())
         self.main_view.app_view.icao8.set(self.main_view.app_view.icao8.get().upper())
         self.main_view.app_view.icao9.set(self.main_view.app_view.icao9.get().upper())
+
+    def restore_icao_list(self):
+        """Retrieves ICAO's from saved file """
+        try:
+            with open('.icao_list.conf', 'rb') as icao_restore:
+                icao_string = pickle.load(icao_restore)
+            return icao_string
+        except IOError as err:
+            print('ICAO list restore file error: ' + str (err))
+        except pickle.PickleError as perr:
+            print('ICAO list restore pickling error: ' + str(perr))
 
     def view_metar_taf_icao0_data(self, event):
         """Call display box and populate with latest METAR/TAF when 'view' button pressed"""
