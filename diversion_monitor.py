@@ -5,6 +5,8 @@ import logging
 
 import datetime
 
+import os
+
 from station_data import StationData
 from update_fields import UpdateFields
 from metar_taf_dialog import MetarTafDialog
@@ -97,7 +99,7 @@ class Controller:
 
     def run(self):
         """Start the application"""
-        self.root.title('Diversion Monitor v1.0b')
+        self.root.title('Diversion Monitor v1.0')
         self.root.deiconify()
         self.root.mainloop()
 
@@ -249,8 +251,11 @@ class Controller:
     def restore_icao_list(self):
         """Retrieves ICAO's from saved file """
         try:
+            if os.path.exists('.icao_list.conf'):
+                os.system('attrib -h .icao_list.conf')
             with open('.icao_list.conf', 'rb') as icao_restore:
                 icao_string = pickle.load(icao_restore)
+                os.system('attrib +h .icao_list.conf')
             return icao_string
         except IOError as err:
             print('ICAO list restore file error: ' + str (err))

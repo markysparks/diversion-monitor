@@ -1,4 +1,6 @@
 import sys
+
+import os
 from lxml import etree
 import socket
 import requests
@@ -94,8 +96,11 @@ def get_latest_taf(icao):
 def save_icao_list(icao_list):
     """Saves the present ICAO's to a file"""
     try:
+        if os.path.exists('.icao_list.conf'):
+            os.system('attrib -h .icao_list.conf')
         with open('.icao_list.conf', 'wb') as icaos:
             pickle.dump(icao_list, icaos)
+            os.system('attrib +h .icao_list.conf')
 
     except IOError as err:
         print('ICAO list save file error: ' + str (err))
