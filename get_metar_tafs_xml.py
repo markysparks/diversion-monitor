@@ -16,9 +16,7 @@ __author__ = 'Mark Baker  email: mark2182@mac.com'
 
 def update_report_data(icao0, icao1, icao2, icao3, icao4, icao5, icao6, icao7, icao8, icao9):
     """Get the latest METAR and TAF report data for the input ICAO code, this is in the format of an XML tree that can
-    be parsed to get the required data. The Web Feature Service (WFS) is provided by FSD's Visual Weather 4.0.3 sandbox
-    server. Note that this server resides within the DMZ and is not available through DirectAccess connections.
-    exvinnsandbxvw02 is the operational server and exvinnsandbxvw01 the test server"""
+    be parsed to get the required data. The Web Feature Service (WFS)"""
 
     global root
     socket.setdefaulttimeout(5)
