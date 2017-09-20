@@ -2,9 +2,7 @@
 Monitor diversionary airfield METARs and TAFs and alert user to 
 change of colour states and TAF status.
 
-Data is provided by a web features server (WFS) running on a Visual Weather
-sandbox within the Met Office DMZ. Note that this server cannot be accessed 
-via DirectAccess connections only via a 'green cable' connection.
+Data is provided by a web features server (WFS).
 If you get a message 'Error retrieving data - will retry...'  it means that the
 app cannot access the data server. 
 

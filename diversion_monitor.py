@@ -22,7 +22,7 @@ else:
     import tkinter as tk
     from tkinter import messagebox as tkMessageBox
 
-__author__ = 'Mark Baker  email: mark.baker@metoffice.gov.uk'
+__author__ = 'Mark Baker  email: mark2182@mac.com'
 
 
 class Controller:

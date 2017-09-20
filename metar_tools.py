@@ -1,7 +1,7 @@
 import re
 from fractions import Fraction
 
-__author__ = 'Mark Baker  email: mark.baker@metoffice.gov.uk'
+__author__ = 'Mark Baker  email: mark2182@mac.com'
 
 
 def metar_no_trend(metar):

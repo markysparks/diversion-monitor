@@ -8,7 +8,7 @@ else:
     import tkinter as tk
     from tkinter import ttk as ttk
 
-__author__ = 'Mark Baker  email: mark.baker@metoffice.gov.uk'
+__author__ = 'Mark Baker  email: mark2182@mac.com'
 
 
 class MainView:
