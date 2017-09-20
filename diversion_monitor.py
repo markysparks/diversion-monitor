@@ -25,7 +25,7 @@ else:
     import tkinter as tk
     from tkinter import messagebox as tkMessageBox
 
-__author__ = 'Mark Baker  email: mark.baker@metoffice.gov.uk'
+__author__ = 'Mark Baker  email: mark2182@mac.com'
 
 
 class Controller:
@@ -99,7 +99,7 @@ class Controller:
 
     def run(self):
         """Start the application"""
-        self.root.title('Diversion Monitor v1.0')
+        self.root.title('Diversion Monitor v1.0' )
         self.root.deiconify()
         self.root.mainloop()
 

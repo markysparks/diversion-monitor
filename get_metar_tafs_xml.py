@@ -11,7 +11,7 @@ if sys.version_info[0] < 3:
 else:
     from tkinter import messagebox as tkMessageBox
 
-__author__ = 'Mark Baker  email: mark.baker@metoffice.gov.uk'
+__author__ = 'Mark Baker  email: mark2182@mac.com'
 
 
 def update_report_data(icao0, icao1, icao2, icao3, icao4, icao5, icao6, icao7, icao8, icao9):
