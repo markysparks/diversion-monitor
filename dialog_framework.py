@@ -5,9 +5,12 @@ from tkinter import ttk as ttk
 
 
 class Dialog(tk.Toplevel):
-    """Framework that's used for generating user alerts - provides more control over standard tcl/tk alert windows such
-    as size, position and focus as well as allowing message checking etc. to continue in the background whilst the
-    is active alert. See http://www.effbot.org/tkinterbook/tkinter-dialog-windows.htm for more info and description"""
+    """Framework that's used for generating user alerts - provides more
+    control over standard tcl/tk alert windows suchas size, position and
+    focus as well as allowing message checking etc. to continue in the
+    background whilst the is active alert.
+    See http://www.effbot.org/tkinterbook/tkinter-dialog-windows.htm
+    for more info and description"""
     def __init__(self, parent, title=None):
 
         tk.Toplevel.__init__(self, parent)
@@ -38,7 +41,8 @@ class Dialog(tk.Toplevel):
 
         self.initial_focus.focus_set()
 
-        """Following would block application execution until dialog actioned - may or may not be required"""
+        """Following would block application execution until dialog actioned
+         - may or may not be required"""
         # self.wait_window(self)
 
     #
@@ -56,7 +60,8 @@ class Dialog(tk.Toplevel):
 
         box = tk.Frame(self)
 
-        # w = ttk.Button(box, text="OK", width=10, command=self.ok, default=tk.ACTIVE)
+        # w = ttk.Button(box, text="OK", width=10, command=self.ok,
+        # default=tk.ACTIVE)
         # w.pack(side=ttk.LEFT, padx=5, pady=5)
         w = ttk.Button(box, text="Close", width=10, command=self.cancel)
         w.pack(side=tk.LEFT, padx=5, pady=5)
