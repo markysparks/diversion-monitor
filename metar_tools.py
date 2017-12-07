@@ -8,6 +8,8 @@ def metar_no_trend(metar):
     """Remove text after Q group - this removes any trend text (UK METAR's)
     which could interfere with current cloud state/visibility determination."""
     metar_notrend = metar.rsplit('Q', 1)[0]
+    # Remove US pressure etc - everything after pressure group e.g 'A3001....'
+    metar_notrend = metar_notrend.rsplit('A', 2)[0]
     return metar_notrend
 
 
@@ -195,5 +197,7 @@ if __name__ == "__main__":
 
     report = 'EGSS 040820Z 25002KT 3000 2000SW R22/0350 FG BR BCFG NSC 01/01' \
              ' Q1032='
+
+    # report = 'KJFK 070651Z 26013KT 10SM SCT070 BKN250 05/M04 A3001 RMK AO2 SLP161 T00501039='
 
     test_suite(report)
