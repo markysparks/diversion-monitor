@@ -16,25 +16,24 @@ def get_vis_fm_mtrs(message):
     # Remove any trend message appended to a METAR
     message_txt = metar_no_trend(message)
 
-    # Visibility is reported in metres using 4 digits e.g. 0250, 2000 ,
-    # 7000 with 9999 meaning 10 KM or more
-    search_string_metres = '\s\d\d\d\d\s'
-    # US stations report visibility in statute miles e.g. 1/2SM, 1 3/4SM
-    # 5SM P6SM (more than 6 statute miles) in TAFs
-    search_string_sm = """
-             (?<= \s )
-             (?P<more> P){0,1} # "P" prefix indicates visibility more than
-             (?P<range> \d | \d/\d | \d\s\d/\d)    # More than 6 is always 
-             just P6SM
-             (?P<unit> SM)                # Statute miles
-             (?= \s|$ )
-         """
-    # Find any occurrences of visibilities in metres
+    search_string_digits = """(\d\d\d\d)"""
+    search_string_metres = """(\s?)(\d\d\d\d[N,S,E,W]*[E,W]*)(\s)(\d\d\d\d)?"""
     vis_list_metres = re.findall(search_string_metres, message_txt)
+    vis_list_str = "(" + ', '.join(map(str,vis_list_metres)) + ")"
+    vis_list_metres = re.findall(search_string_digits, vis_list_str)
 
     # Check for CAVOK in massage - implies vis 10 KM or more
     if re.search('CAVOK', message_txt):
         vis_list_metres.append('9999')
+
+    # US stations report visibility in statute miles e.g. 1/2SM, 1 3/4SM
+    # 5SM P6SM (more than 6 statute miles) in TAFs
+    search_string_sm = """
+        (?<= \s )
+        (?P<more> P){0,1}
+        (?P<range> \d | \d/\d | \d\s\d/\d)
+        (?P<unit> SM)
+        (?= \s|$ )"""
 
     vis_list_sm = re.findall(search_string_sm, message_txt, re.VERBOSE)
 
@@ -49,9 +48,9 @@ def get_vis_fm_mtrs(message):
         vis_list_metres = list(map(int, vis_list_metres))
         return int(min(vis_list_metres))
 
-    # If no visibilities in metres check for visibility in statute miles (SM) - US stations
+    # If no visibilities in metres check for visibility in statute miles (SM)
+    #  - US stations
     elif vis_list_sm:
-
         list_sm_decimal = []
         list_metres = []
         if vis_list_sm:
@@ -85,7 +84,7 @@ def get_sig_cloud_height(message):
             cloud_base_list_vv.append('0')
 
     cloud_base_list = cloud_base_list_sct + cloud_base_list_bkn + \
-                      cloud_base_list_ovc + cloud_base_list_vv
+        cloud_base_list_ovc + cloud_base_list_vv
 
     # Extract the digits from cloud groups
     cloud_base_list = [extract_digits(text) for text in cloud_base_list]
@@ -98,7 +97,7 @@ def get_sig_cloud_height(message):
     if cloud_base_list:
         return int(min(cloud_base_list))
     else:
-        # Ensure 2500ft (BLU) in case only 'FEW' amounts in report
+        # Ensure 2500ft (BLU) in case only 'FEW' or NSC in report
         return 2500
 
 
@@ -191,10 +190,9 @@ def test_suite(report_txt):
 
 
 if __name__ == "__main__":
-    report = 'EGWU 091035Z 0912/1006 34007KT 9999 3000SW -RA BKN010 TEMPO ' \
-             '0912/0920 5000 RA PROB40 TEMPO 0912/0920 3000 ' \
-              '+RA PROB30 TEMPO 0915/0919 36015G25KT FEW010 BKN015 BECMG ' \
-             '0919/0921 BKN018 BECMG 0921/0924 SCT030 ' \
-              'PROB30 1000/1006 SCT010='
+    #report = 'SPECI EGXE 210910Z 12005KT 9999 3000SW BR FEW003 SCT021 ' \
+    #        'BKN070 10/10 Q1005 YLO1 BECMG 24015KT 9999 NSW SCT010 GRN='
+
+    report = 'EGSS 040820Z 25002KT 3000 2000SW R22/0350 FG BR BCFG NSC 01/01 Q1032='
 
     test_suite(report)

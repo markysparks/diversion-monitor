@@ -1,5 +1,3 @@
-import datetime
-
 __author__ = 'Mark Baker  email: mark2182@mac.com'
 
 import metar_tools as metar_tools
@@ -13,6 +11,7 @@ class StationData:
         self.metar_time = None
         self.taf = None
         self.taf_time = None
+        self.taf_cnl = False
         self.taf_status = 0
         self.station_dict = {'ICAO': '', 'METAR_TIME': '', 'METAR': '',
                              'PREV_COLOUR': 0, 'LATEST_COLOUR': 0,
@@ -74,13 +73,15 @@ class StationData:
                         self.station_dict['TAF_TIME'] = self.taf_time
                         self.station_dict['TAF_MIN_COLOUR'] = \
                             metar_tools.get_colourstate_nbr(self.taf)
+                        self.taf_cnl = str(self.taf).find('CNL') == -1
+                        self.taf_cnl = True
 
                     # Check if the METAR colour state is lower than the
                     # lowest TAF colour state and flag appropriately
                     # 2 if no TAF available, 1 if TAF bust, 0 if TAF
                     # is available and covers minimum colour state in
-                    # latest METAR
-                    if self.taf is '':
+                    # latest METAR. If TAF is cancelled set status to 2.
+                    if self.taf is '' or self.taf_cnl:
                         self.station_dict['TAF_STATUS'] = 2
                     elif self.station_dict['LATEST_COLOUR'] \
                             < self.station_dict['TAF_MIN_COLOUR']:

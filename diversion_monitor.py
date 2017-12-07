@@ -17,7 +17,6 @@ from apscheduler.triggers.interval import IntervalTrigger
 
 logging.basicConfig()
 
-
 if sys.version_info[0] < 3:
     import Tkinter as tk
 else:
@@ -60,9 +59,9 @@ class Controller:
                                                       self.exit_app)
 
         self.main_view.controls_view.update_data_button.bind(
-            '<Button>',self.update_data_now)
+            '<Button>', self.update_data_now)
         self.main_view.controls_view.update_data_button.bind(
-            '<Return>',self.update_data_now)
+            '<Return>', self.update_data_now)
 
         self.main_view.app_view.icao0_entry.bind('<KeyRelease>', self.caps)
         self.main_view.app_view.icao1_entry.bind('<KeyRelease>', self.caps)
@@ -75,46 +74,46 @@ class Controller:
         self.main_view.app_view.icao8_entry.bind('<KeyRelease>', self.caps)
         self.main_view.app_view.icao9_entry.bind('<KeyRelease>', self.caps)
 
-        self.main_view.app_view.viewICAO0_button.bind \
-            ('<Button>', self.view_metar_taf_icao0_data)
-        self.main_view.app_view.viewICAO0_button.bind \
-            ('<Return>', self.view_metar_taf_icao0_data)
-        self.main_view.app_view.viewICAO1_button.bind \
-            ('<Button>', self.view_metar_taf_icao1_data)
-        self.main_view.app_view.viewICAO1_button.bind \
-            ('<Return>', self.view_metar_taf_icao1_data)
-        self.main_view.app_view.viewICAO2_button.bind \
-            ('<Button>', self.view_metar_taf_icao2_data)
-        self.main_view.app_view.viewICAO2_button.bind \
-            ('<Return>', self.view_metar_taf_icao2_data)
-        self.main_view.app_view.viewICAO3_button.bind \
-            ('<Button>', self.view_metar_taf_icao3_data)
-        self.main_view.app_view.viewICAO3_button.bind \
-            ('<Return>', self.view_metar_taf_icao3_data)
-        self.main_view.app_view.viewICAO4_button.bind \
-            ('<Button>', self.view_metar_taf_icao4_data)
-        self.main_view.app_view.viewICAO4_button.bind \
-            ('<Return>', self.view_metar_taf_icao4_data)
-        self.main_view.app_view.viewICAO5_button.bind \
-            ('<Button>', self.view_metar_taf_icao5_data)
-        self.main_view.app_view.viewICAO5_button.bind \
-            ('<Return>', self.view_metar_taf_icao5_data)
-        self.main_view.app_view.viewICAO6_button.bind \
-            ('<Button>', self.view_metar_taf_icao6_data)
-        self.main_view.app_view.viewICAO6_button.bind \
-            ('<Return>', self.view_metar_taf_icao6_data)
-        self.main_view.app_view.viewICAO7_button.bind \
-            ('<Button>', self.view_metar_taf_icao7_data)
-        self.main_view.app_view.viewICAO7_button.bind \
-            ('<Return>', self.view_metar_taf_icao7_data)
-        self.main_view.app_view.viewICAO8_button.bind \
-            ('<Button>', self.view_metar_taf_icao8_data)
-        self.main_view.app_view.viewICAO8_button.bind \
-            ('<Return>', self.view_metar_taf_icao8_data)
-        self.main_view.app_view.viewICAO9_button.bind \
-            ('<Button>', self.view_metar_taf_icao9_data)
-        self.main_view.app_view.viewICAO9_button.bind \
-            ('<Return>', self.view_metar_taf_icao9_data)
+        self.main_view.app_view.viewICAO0_button.bind(
+            '<Button>', self.view_metar_taf_icao0_data)
+        self.main_view.app_view.viewICAO0_button.bind(
+            '<Return>', self.view_metar_taf_icao0_data)
+        self.main_view.app_view.viewICAO1_button.bind(
+            '<Button>', self.view_metar_taf_icao1_data)
+        self.main_view.app_view.viewICAO1_button.bind(
+            '<Return>', self.view_metar_taf_icao1_data)
+        self.main_view.app_view.viewICAO2_button.bind(
+            '<Button>', self.view_metar_taf_icao2_data)
+        self.main_view.app_view.viewICAO2_button.bind(
+            '<Return>', self.view_metar_taf_icao2_data)
+        self.main_view.app_view.viewICAO3_button.bind(
+            '<Button>', self.view_metar_taf_icao3_data)
+        self.main_view.app_view.viewICAO3_button.bind(
+            '<Return>', self.view_metar_taf_icao3_data)
+        self.main_view.app_view.viewICAO4_button.bind(
+            '<Button>', self.view_metar_taf_icao4_data)
+        self.main_view.app_view.viewICAO4_button.bind(
+            '<Return>', self.view_metar_taf_icao4_data)
+        self.main_view.app_view.viewICAO5_button.bind(
+            '<Button>', self.view_metar_taf_icao5_data)
+        self.main_view.app_view.viewICAO5_button.bind(
+            '<Return>', self.view_metar_taf_icao5_data)
+        self.main_view.app_view.viewICAO6_button.bind(
+            '<Button>', self.view_metar_taf_icao6_data)
+        self.main_view.app_view.viewICAO6_button.bind(
+            '<Return>', self.view_metar_taf_icao6_data)
+        self.main_view.app_view.viewICAO7_button.bind(
+            '<Button>', self.view_metar_taf_icao7_data)
+        self.main_view.app_view.viewICAO7_button.bind(
+            '<Return>', self.view_metar_taf_icao7_data)
+        self.main_view.app_view.viewICAO8_button.bind(
+            '<Button>', self.view_metar_taf_icao8_data)
+        self.main_view.app_view.viewICAO8_button.bind(
+            '<Return>', self.view_metar_taf_icao8_data)
+        self.main_view.app_view.viewICAO9_button.bind(
+            '<Button>', self.view_metar_taf_icao9_data)
+        self.main_view.app_view.viewICAO9_button.bind(
+            '<Return>', self.view_metar_taf_icao9_data)
 
         """Set the colour state fields to initially all be grey"""
         self.update_fields.set_colourstates_grey(self.main_view)
@@ -123,7 +122,7 @@ class Controller:
 
     def run(self):
         """Start the application"""
-        self.root.title('Diversion Monitor v1.0')
+        self.root.title('Diversion Monitor v1.1')
         self.root.deiconify()
         self.root.mainloop()
 
@@ -132,8 +131,8 @@ class Controller:
         are collected and fields updated before setting scheduled checking
         :param event: 'Start Monitoring' button pressed."""
         if not self.monitoring:
-            self.main_view.controls_view.monitor_button.configure \
-                (text='Monitoring...')
+            self.main_view.controls_view.monitor_button.configure(
+                text='Monitoring...')
             self.data_check_sched()
             self.monitoring = True
             self.check_metars_tafs()
@@ -170,6 +169,8 @@ class Controller:
                                          self.icao0_data.station_dict)
         self.update_fields.update_icao0(self.icao0_data.station_dict,
                                         self.main_view)
+        self.update_fields.display_alerts(self.icao1_data.station_dict,
+                                          self.main_view)
 
         icao1 = self.main_view.app_view.icao1.get()
         icao1_metar_data = get_xml_data.get_latest_metar(icao1)
@@ -182,7 +183,8 @@ class Controller:
                                          self.icao1_data.station_dict)
         self.update_fields.update_icao1(self.icao1_data.station_dict,
                                         self.main_view)
-        self.update_fields.display_alerts(self.icao1_data.station_dict, self)
+        self.update_fields.display_alerts(self.icao1_data.station_dict,
+                                          self.main_view)
 
         icao2 = self.main_view.app_view.icao2.get()
         icao2_metar_data = get_xml_data.get_latest_metar(icao2)
@@ -195,7 +197,8 @@ class Controller:
                                          self.icao2_data.station_dict)
         self.update_fields.update_icao2(self.icao2_data.station_dict,
                                         self.main_view)
-        self.update_fields.display_alerts(self.icao2_data.station_dict, self)
+        self.update_fields.display_alerts(self.icao2_data.station_dict,
+                                          self.main_view)
 
         icao3 = self.main_view.app_view.icao3.get()
         icao3_metar_data = get_xml_data.get_latest_metar(icao3)
@@ -208,7 +211,8 @@ class Controller:
                                          self.icao3_data.station_dict)
         self.update_fields.update_icao3(self.icao3_data.station_dict,
                                         self.main_view)
-        self.update_fields.display_alerts(self.icao3_data.station_dict, self)
+        self.update_fields.display_alerts(self.icao3_data.station_dict,
+                                          self.main_view)
 
         icao4 = self.main_view.app_view.icao4.get()
         icao4_metar_data = get_xml_data.get_latest_metar(icao4)
@@ -221,7 +225,8 @@ class Controller:
                                          self.icao4_data.station_dict)
         self.update_fields.update_icao4(self.icao4_data.station_dict,
                                         self.main_view)
-        self.update_fields.display_alerts(self.icao4_data.station_dict, self)
+        self.update_fields.display_alerts(self.icao4_data.station_dict,
+                                          self.main_view)
 
         icao5 = self.main_view.app_view.icao5.get()
         icao5_metar_data = get_xml_data.get_latest_metar(icao5)
@@ -233,7 +238,8 @@ class Controller:
                                          self.icao5_data.station_dict)
         self.update_fields.update_icao5(self.icao5_data.station_dict,
                                         self.main_view)
-        self.update_fields.display_alerts(self.icao5_data.station_dict, self)
+        self.update_fields.display_alerts(self.icao5_data.station_dict,
+                                          self.main_view)
 
         icao6 = self.main_view.app_view.icao6.get()
         icao6_metar_data = get_xml_data.get_latest_metar(icao6)
@@ -246,7 +252,8 @@ class Controller:
                                          self.icao6_data.station_dict)
         self.update_fields.update_icao6(self.icao6_data.station_dict,
                                         self.main_view)
-        self.update_fields.display_alerts(self.icao6_data.station_dict, self)
+        self.update_fields.display_alerts(self.icao6_data.station_dict,
+                                          self.main_view)
 
         icao7 = self.main_view.app_view.icao7.get()
         icao7_metar_data = get_xml_data.get_latest_metar(icao7)
@@ -259,7 +266,8 @@ class Controller:
                                          self.icao7_data.station_dict)
         self.update_fields.update_icao7(self.icao7_data.station_dict,
                                         self.main_view)
-        self.update_fields.display_alerts(self.icao7_data.station_dict, self)
+        self.update_fields.display_alerts(self.icao7_data.station_dict,
+                                          self.main_view)
 
         icao8 = self.main_view.app_view.icao8.get()
         icao8_metar_data = get_xml_data.get_latest_metar(icao8)
@@ -272,7 +280,8 @@ class Controller:
                                          self.icao8_data.station_dict)
         self.update_fields.update_icao8(self.icao8_data.station_dict,
                                         self.main_view)
-        self.update_fields.display_alerts(self.icao8_data.station_dict, self)
+        self.update_fields.display_alerts(self.icao8_data.station_dict,
+                                          self.main_view)
 
         icao9 = self.main_view.app_view.icao9.get()
         icao9_metar_data = get_xml_data.get_latest_metar(icao9)
@@ -285,9 +294,11 @@ class Controller:
                                          self.icao9_data.station_dict)
         self.update_fields.update_icao9(self.icao9_data.station_dict,
                                         self.main_view)
-        self.update_fields.display_alerts(self.icao9_data.station_dict, self)
+        self.update_fields.display_alerts(self.icao9_data.station_dict,
+                                          self.main_view)
 
-        self.update_fields.display_alerts(self.icao0_data.station_dict, self)
+        self.update_fields.display_alerts(self.icao0_data.station_dict,
+                                          self.main_view)
 
         if self.update_fields.status_change:
             self.update_fields.trigger_alert()
@@ -328,30 +339,31 @@ class Controller:
         self.update_display()
 
     def caps(self, event):
-        """Capatilise characters typed into ICAO boxes
+        """Capitalise characters typed into ICAO boxes
         :param event: Keyboard character typed into an ICAO box."""
-        self.main_view.app_view.icao0.set \
-            (self.main_view.app_view.icao0.get().upper())
-        self.main_view.app_view.icao1.set \
-            (self.main_view.app_view.icao1.get().upper())
-        self.main_view.app_view.icao2.set \
-            (self.main_view.app_view.icao2.get().upper())
-        self.main_view.app_view.icao3.set \
-            (self.main_view.app_view.icao3.get().upper())
-        self.main_view.app_view.icao4.set \
-            (self.main_view.app_view.icao4.get().upper())
-        self.main_view.app_view.icao5.set \
-            (self.main_view.app_view.icao5.get().upper())
-        self.main_view.app_view.icao6.set \
-            (self.main_view.app_view.icao6.get().upper())
-        self.main_view.app_view.icao7.set \
-            (self.main_view.app_view.icao7.get().upper())
-        self.main_view.app_view.icao8.set \
-            (self.main_view.app_view.icao8.get().upper())
-        self.main_view.app_view.icao9.set \
-            (self.main_view.app_view.icao9.get().upper())
+        self.main_view.app_view.icao0.set(
+            self.main_view.app_view.icao0.get().upper())
+        self.main_view.app_view.icao1.set(
+            self.main_view.app_view.icao1.get().upper())
+        self.main_view.app_view.icao2.set(
+            self.main_view.app_view.icao2.get().upper())
+        self.main_view.app_view.icao3.set(
+            self.main_view.app_view.icao3.get().upper())
+        self.main_view.app_view.icao4.set(
+            self.main_view.app_view.icao4.get().upper())
+        self.main_view.app_view.icao5.set(
+            self.main_view.app_view.icao5.get().upper())
+        self.main_view.app_view.icao6.set(
+            self.main_view.app_view.icao6.get().upper())
+        self.main_view.app_view.icao7.set(
+            self.main_view.app_view.icao7.get().upper())
+        self.main_view.app_view.icao8.set(
+            self.main_view.app_view.icao8.get().upper())
+        self.main_view.app_view.icao9.set(
+            self.main_view.app_view.icao9.get().upper())
 
-    def restore_icao_list(self):
+    @staticmethod
+    def restore_icao_list():
         """Retrieves ICAO's from saved file """
         try:
             if os.path.exists('.icao_list.conf'):
@@ -443,7 +455,7 @@ class Controller:
             print('ICAO list save file error: ' + str(err))
         except pickle.PickleError as perr:
             print('ICAO list save pickling error: ' + str(perr))
-        except NameError as nameerr:
+        except NameError:
             print('ICAO list undefined')
 
     def exit_app(self, event):

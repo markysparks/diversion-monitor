@@ -6,7 +6,7 @@ from tkinter import ttk as ttk
 
 class Dialog(tk.Toplevel):
     """Framework that's used for generating user alerts - provides more
-    control over standard tcl/tk alert windows suchas size, position and
+    control over standard tcl/tk alert windows such as size, position and
     focus as well as allowing message checking etc. to continue in the
     background whilst the is active alert.
     See http://www.effbot.org/tkinterbook/tkinter-dialog-windows.htm
@@ -36,8 +36,8 @@ class Dialog(tk.Toplevel):
 
         self.protocol("WM_DELETE_WINDOW", self.cancel)
 
-        self.geometry("+%d+%d" % (parent.winfo_rootx() + 1,
-                                  parent.winfo_rooty() + 110))
+        self.geometry("+%d+%d" % (parent.winfo_rootx() + 400,
+                                  parent.winfo_rooty() + 5))
 
         self.initial_focus.focus_set()
 

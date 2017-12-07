@@ -192,11 +192,12 @@ class UpdateFields:
         main_view.app_view.icao9_taf_status_field.configure(
             image=(self.get_tafstatus_label(icao_dict['TAF_STATUS'])))
 
-    def display_alerts(self, icao_dict):
+    def display_alerts(self, icao_dict, view):
         """Determine if a colour state change has occurred and display alert
         dialog if necessary. Don't alert if previous or latest colour states
         are grey (0). Only alert if a the colourstate change is as the result
-        of a new METAR message"""
+        of a new METAR message
+        :param view: """
         if icao_dict['PREV_COLOUR'] is not 0 and icao_dict['LATEST_COLOUR'] \
                 is not 0:
             if icao_dict['LATEST_COLOUR'] < icao_dict['PREV_COLOUR'] and\
