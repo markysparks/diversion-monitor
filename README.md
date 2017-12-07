@@ -17,7 +17,13 @@ wrapped up in the executable (so need to even install Python).
 
 ##### Version History:
 
-- v1.0b 15/08/17: At the moment alert messages will not take the top focus from 
+v1.1 07/12/17: 
+- Directional and runway visibilities now detected correctly. 
+- CNL TAFs accounted for as no TAF available. 
+- METAR / TAF viewer window moved to right so as not to cover the main window. 
+- ICAOs entered can be saved between sessions.
+
+v1.0 15/08/17: At the moment alert messages will not take the top focus from 
 other windows but it may possible to change this behaviour in the future.
  
 
