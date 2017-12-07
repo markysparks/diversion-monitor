@@ -62,6 +62,7 @@ class StationData:
                         input fields. In effect we are starting
                         again with monitoring this icao so set 
                         previous colour state to zero (grey)"""
+
                         if start_icao != icao:
                             self.station_dict['PREV_COLOUR'] = 0
                             self.station_dict['NEW_METAR'] = False

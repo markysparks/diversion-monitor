@@ -22,7 +22,6 @@ if sys.version_info[0] < 3:
 else:
     import tkinter as tk
 
-
 class Controller:
     """Main GUI controller, handles mouse, keyboard and data change events."""
 
