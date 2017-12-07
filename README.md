@@ -23,7 +23,8 @@ v1.1 07/12/17:
 - METAR / TAF viewer window moved to right so as not to cover the main window. 
 - ICAOs entered can be saved between sessions.
 
-v1.0 15/08/17: At the moment alert messages will not take the top focus from 
+v1.0 15/08/17: 
+-At the moment alert messages will not take the top focus from 
 other windows but it may possible to change this behaviour in the future.
  
 
