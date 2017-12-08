@@ -21,7 +21,7 @@ def get_vis_fm_mtrs(message):
     search_string_digits = """(\d\d\d\d)"""
     search_string_metres = """(\s?)(\d\d\d\d[N,S,E,W]*[E,W]*)(\s)(\d\d\d\d)?"""
     vis_list_metres = re.findall(search_string_metres, message_txt)
-    vis_list_str = "(" + ', '.join(map(str,vis_list_metres)) + ")"
+    vis_list_str = "(" + ', '.join(map(str, vis_list_metres)) + ")"
     vis_list_metres = re.findall(search_string_digits, vis_list_str)
 
     # Check for CAVOK in massage - implies vis 10 KM or more
@@ -86,7 +86,7 @@ def get_sig_cloud_height(message):
             cloud_base_list_vv.append('0')
 
     cloud_base_list = cloud_base_list_sct + cloud_base_list_bkn + \
-        cloud_base_list_ovc + cloud_base_list_vv
+                      cloud_base_list_ovc + cloud_base_list_vv
 
     # Extract the digits from cloud groups
     cloud_base_list = [extract_digits(text) for text in cloud_base_list]
@@ -192,12 +192,13 @@ def test_suite(report_txt):
 
 
 if __name__ == "__main__":
-    #report = 'SPECI EGXE 210910Z 12005KT 9999 3000SW BR FEW003 SCT021 ' \
+    # report = 'SPECI EGXE 210910Z 12005KT 9999 3000SW BR FEW003 SCT021 ' \
     #        'BKN070 10/10 Q1005 YLO1 BECMG 24015KT 9999 NSW SCT010 GRN='
 
-    report = 'EGSS 040820Z 25002KT 3000 2000SW R22/0350 FG BR BCFG NSC 01/01' \
+    report = 'EGSS 040820Z 25002KT 3000 2000SW R22/0450 FG BR BCFG NSC 01/01' \
              ' Q1032='
 
-    # report = 'KJFK 070651Z 26013KT 10SM SCT070 BKN250 05/M04 A3001 RMK AO2 SLP161 T00501039='
+    # report = 'KJFK 070651Z 26013KT 10SM SCT070 BKN250 05/M04 A3001 RMK A ' \
+    #         'O2 SLP161 T00501039='
 
     test_suite(report)
