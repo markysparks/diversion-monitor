@@ -5,11 +5,16 @@ __author__ = 'Mark Baker  email: mark2182@.mac.com'
 
 
 def metar_no_trend(metar):
-    """Remove text after Q group - this removes any trend text (UK METAR's)
-    which could interfere with current cloud state/visibility determination."""
+    """Remove text after Q or A group this removes any trend text (UK METAR's)
+    and avoids pressure readings interfering with current cloud
+    state/visibility determination."""
     metar_notrend = metar.rsplit('Q', 1)[0]
-    # Remove US pressure etc - everything after pressure group e.g 'A3001....'
-    metar_notrend = metar_notrend.rsplit('A', 2)[0]
+
+    if 'AUTO' not in metar:
+        metar_notrend = metar_notrend.rsplit('A', 2)[0]
+    else:
+        metar_notrend = metar.replace('AUTO', '')
+        metar_notrend = metar_notrend.split('A', 2)[0]
     return metar_notrend
 
 
@@ -20,6 +25,7 @@ def get_vis_fm_mtrs(message):
 
     search_string_digits = """(\d\d\d\d)"""
     search_string_metres = """(\s?)(\d\d\d\d[N,S,E,W]*[E,W]*)(\s)(\d\d\d\d)?"""
+    # search_string_metres = '9999'
     vis_list_metres = re.findall(search_string_metres, message_txt)
     vis_list_str = "(" + ', '.join(map(str, vis_list_metres)) + ")"
     vis_list_metres = re.findall(search_string_digits, vis_list_str)
@@ -192,13 +198,15 @@ def test_suite(report_txt):
 
 
 if __name__ == "__main__":
-    # report = 'SPECI EGXE 210910Z 12005KT 9999 3000SW BR FEW003 SCT021 ' \
-    #        'BKN070 10/10 Q1005 YLO1 BECMG 24015KT 9999 NSW SCT010 GRN='
+    report = 'SPECI EGXE 210910Z 12005KT 9999 3000SW BR FEW003 SCT021 ' \
+           'BKN070 10/10 Q1005 YLO1 BECMG 24015KT 9999 NSW SCT010 GRN='
 
-    report = 'EGSS 040820Z 25002KT 3000 2000SW R22/0450 FG BR BCFG NSC 01/01' \
-             ' Q1032='
+    # report = 'EGSS 040820Z 25002KT 3000 2000SW R22/1000 FG BR BCFG NSC 01/01' \
+    #           ' Q1032='
 
     # report = 'KJFK 070651Z 26013KT 10SM SCT070 BKN250 05/M04 A3001 RMK A ' \
-    #         'O2 SLP161 T00501039='
+    #           'O2 SLP161 T00501039='
+
+    # report = 'EGUW 110550Z AUTO 05012KT 3000 OVC120/// 02/01 Q0980='
 
     test_suite(report)
