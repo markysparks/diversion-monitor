@@ -5,16 +5,14 @@ __author__ = 'Mark Baker  email: mark2182@.mac.com'
 
 
 def metar_no_trend(metar):
-    """Remove text after Q or A group this removes any trend text (UK METAR's)
-    and avoids pressure readings interfering with current cloud
+    """Remove Q or A (USA) pressure groups, any trend text (UK METAR's)
+    and any RMK's (USA) from the METAR message.
+    This avoids pressure readings/trends etc. interfering with current cloud
     state/visibility determination."""
-    metar_notrend = metar.rsplit('Q', 1)[0]
+    metar_notrend = metar.rsplit('Q', 1)[0]  # will remove Q... and any trend
+    metar_notrend = metar_notrend.rsplit('RMK', 1)[0]
+    metar_notrend = re.sub('A\d\d\d\d', '', metar_notrend)
 
-    if 'AUTO' not in metar:
-        metar_notrend = metar_notrend.rsplit('A', 2)[0]
-    else:
-        metar_notrend = metar.replace('AUTO', '')
-        metar_notrend = metar_notrend.split('A', 2)[0]
     return metar_notrend
 
 
@@ -25,7 +23,6 @@ def get_vis_fm_mtrs(message):
 
     search_string_digits = """(\d\d\d\d)"""
     search_string_metres = """(\s?)(\d\d\d\d[N,S,E,W]*[E,W]*)(\s)(\d\d\d\d)?"""
-    # search_string_metres = '9999'
     vis_list_metres = re.findall(search_string_metres, message_txt)
     vis_list_str = "(" + ', '.join(map(str, vis_list_metres)) + ")"
     vis_list_metres = re.findall(search_string_digits, vis_list_str)
@@ -157,35 +154,6 @@ def get_report_time(metar):
     return report_dtg
 
 
-def extract_metar(icao, metdb_response_text):  # Not used at present
-    metar = ''
-    # print('doing  extract metar....')
-    """extract metar message from metdb response text response. 
-    Add 000000Z time group on end of data block
-        to assist with regex searching"""
-    # msgstr = str(metdb_response_text.text)
-    # print('MetDB response:')
-    # print(metdb_response_text.text)
-    searchstr1 = icao + r'\s\d\d\d\d\d\dZ[\s\S]*?\d\d\d\d\d\dZ'
-    searchstr2 = icao + r'\s\d\d\d\d\d\dZ[\s\S]</pre>'
-
-    if re.search(searchstr1, metdb_response_text.text):
-        metar_raw = re.search(searchstr1, metdb_response_text.text)
-        metar = (metar_raw.group())[:-7]
-        # print('METAR search1')
-        # print(metar)
-
-    elif re.search(searchstr2, metdb_response_text.text):
-        metar_raw = re.search(searchstr2, metdb_response_text.text)
-        metar = (metar_raw.group())[:-5]
-        # print('METAR search2')
-        # print(metar)
-
-    else:
-        print('METAR search failed')
-    return metar
-
-
 def test_suite(report_txt):
     vis = get_vis_fm_mtrs(report_txt)
     print('lowest vis =  ' + str(vis))
@@ -198,15 +166,19 @@ def test_suite(report_txt):
 
 
 if __name__ == "__main__":
-    report = 'SPECI EGXE 210910Z 12005KT 9999 3000SW BR FEW003 SCT021 ' \
-           'BKN070 10/10 Q1005 YLO1 BECMG 24015KT 9999 NSW SCT010 GRN='
+    # report = 'SPECI EGXE 210910Z 12005KT 9999 3000SW BR FEW003 SCT021 ' \
+    #        'BKN070 10/10 Q1005 YLO1 BECMG 24015KT 9999 NSW SCT010 GRN='
 
     # report = 'EGSS 040820Z 25002KT 3000 2000SW R22/1000 FG BR BCFG NSC 01/01' \
-    #           ' Q1032='
+    #          ' Q1032='
 
     # report = 'KJFK 070651Z 26013KT 10SM SCT070 BKN250 05/M04 A3001 RMK A ' \
-    #           'O2 SLP161 T00501039='
+    #          'O2 SLP161 T00501039='
 
     # report = 'EGUW 110550Z AUTO 05012KT 3000 OVC120/// 02/01 Q0980='
+
+    # report = 'EGVO 120550Z 24005KT CAVOK M03/M04 Q1005 BLU='
+
+    report = 'EGLL 120550Z AUTO 28004KT 9000 NCD M03/M05 Q1005 NOSIG= '
 
     test_suite(report)
