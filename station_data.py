@@ -5,6 +5,7 @@ import metar_tools as metar_tools
 
 class StationData:
     """Manages ICAO station data. Uses a dictionary to store info"""
+
     def __init__(self):
 
         self.metar = None
@@ -44,7 +45,7 @@ class StationData:
                     self.station_dict['ICAO'] = icao
                     self.station_dict['METAR_TIME'] = self.metar_time
                     self.station_dict['METAR'] = self.metar
-                    self.station_dict['LATEST_COLOUR'] =\
+                    self.station_dict['LATEST_COLOUR'] = \
                         metar_tools.get_colourstate_nbr(self.metar)
 
                     if new_time != start_time and start_icao == icao:
@@ -74,8 +75,9 @@ class StationData:
                         self.station_dict['TAF_TIME'] = self.taf_time
                         self.station_dict['TAF_MIN_COLOUR'] = \
                             metar_tools.get_colourstate_nbr(self.taf)
-                        self.taf_cnl = str(self.taf).find('CNL') == -1
-                        self.taf_cnl = True
+
+                        if 'CNL' in self.taf:
+                            self.taf_cnl = True
 
                     # Check if the METAR colour state is lower than the
                     # lowest TAF colour state and flag appropriately
