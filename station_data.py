@@ -106,14 +106,3 @@ class StationData:
                                  'TAF_TIME': '', 'TAF': '',
                                  'TAF_MIN_COLOUR': 0, 'TAF_STATUS': 2,
                                  'NEW_METAR': True}
-
-
-if __name__ == "__main__":
-
-    taf = 'EGUW 131131Z 1312/1321 21012KT 9999 SCT040 TEMPO 1313/1315 7000' \
-          ' -SHRA BKN015 PROB30 TEMPO 1313/1315 21018G30KT 4000 SHRA ' \
-          'BKN012TCU TEMPO 1320/1321 2000 SHRASN BKN003 PROB40 TEMPO ' \
-          '1320/1321 28020G35KT 0800 +SHSN BKN002 BKN020CB='
-
-    if 'CNL' in taf:
-        print('found CNL')
