@@ -122,7 +122,7 @@ class Controller:
 
     def run(self):
         """Start the application"""
-        self.root.title('Diversion Monitor v1.3')
+        self.root.title('Diversion Monitor v1.4')
         self.root.deiconify()
         self.root.mainloop()
 

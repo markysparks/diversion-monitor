@@ -35,6 +35,7 @@ class StationData:
                 self.metar_time = metar_time
                 self.taf = new_taf
                 self.taf_time = taf_time
+                self.taf_cnl = False
 
                 if self.metar is not '':
                     start_icao = icao_dict['ICAO']
@@ -75,7 +76,6 @@ class StationData:
                         self.station_dict['TAF_TIME'] = self.taf_time
                         self.station_dict['TAF_MIN_COLOUR'] = \
                             metar_tools.get_colourstate_nbr(self.taf)
-
                         if 'CNL' in self.taf:
                             self.taf_cnl = True
 
@@ -92,10 +92,13 @@ class StationData:
                     else:
                         self.station_dict['TAF_STATUS'] = 0
 
+                else:
+                    """If no metar is found for the specified ICAO, just set 
+                    the ICAO field of the object. Need to do this
+                    otherwise the ICAO disappears from the window field"""
+                    self.station_dict['ICAO'] = icao
+
             except AttributeError:
-                """If no metar is found for the specified ICAO, just set 
-                the ICAO field of the object. Need to do this
-                otherwise the ICAO disappears from the window field"""
                 self.station_dict['ICAO'] = icao
 
         else:
