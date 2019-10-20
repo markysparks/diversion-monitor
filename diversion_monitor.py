@@ -6,7 +6,7 @@ import os
 import pickle
 import sys
 
-import get_metar_tafs_xml as get_xml_data
+import get_metar_tafs_metdb as get_reports
 import monitor_gui as gui
 
 from metar_taf_dialog import MetarTafDialog
@@ -159,8 +159,8 @@ class Controller:
         be called before updating the display to ensure that the latest data
         has been retrieved from the WFS server"""
         icao0 = self.main_view.app_view.icao0.get()
-        icao0_metar_data = get_xml_data.get_latest_metar(icao0)
-        icao0_taf_data = get_xml_data.get_latest_taf(icao0)
+        icao0_metar_data = get_reports.get_latest_metar(icao0)
+        icao0_taf_data = get_reports.get_latest_taf(icao0)
         self.icao0_data.update_icao_data(icao0,
                                          icao0_metar_data[0],
                                          icao0_metar_data[1],
@@ -173,8 +173,8 @@ class Controller:
                                           self.main_view)
 
         icao1 = self.main_view.app_view.icao1.get()
-        icao1_metar_data = get_xml_data.get_latest_metar(icao1)
-        icao1_taf_data = get_xml_data.get_latest_taf(icao1)
+        icao1_metar_data = get_reports.get_latest_metar(icao1)
+        icao1_taf_data = get_reports.get_latest_taf(icao1)
         self.icao1_data.update_icao_data(icao1,
                                          icao1_metar_data[0],
                                          icao1_metar_data[1],
@@ -187,8 +187,8 @@ class Controller:
                                           self.main_view)
 
         icao2 = self.main_view.app_view.icao2.get()
-        icao2_metar_data = get_xml_data.get_latest_metar(icao2)
-        icao2_taf_data = get_xml_data.get_latest_taf(icao2)
+        icao2_metar_data = get_reports.get_latest_metar(icao2)
+        icao2_taf_data = get_reports.get_latest_taf(icao2)
         self.icao2_data.update_icao_data(icao2,
                                          icao2_metar_data[0],
                                          icao2_metar_data[1],
@@ -201,8 +201,8 @@ class Controller:
                                           self.main_view)
 
         icao3 = self.main_view.app_view.icao3.get()
-        icao3_metar_data = get_xml_data.get_latest_metar(icao3)
-        icao3_taf_data = get_xml_data.get_latest_taf(icao3)
+        icao3_metar_data = get_reports.get_latest_metar(icao3)
+        icao3_taf_data = get_reports.get_latest_taf(icao3)
         self.icao3_data.update_icao_data(icao3,
                                          icao3_metar_data[0],
                                          icao3_metar_data[1],
@@ -215,8 +215,8 @@ class Controller:
                                           self.main_view)
 
         icao4 = self.main_view.app_view.icao4.get()
-        icao4_metar_data = get_xml_data.get_latest_metar(icao4)
-        icao4_taf_data = get_xml_data.get_latest_taf(icao4)
+        icao4_metar_data = get_reports.get_latest_metar(icao4)
+        icao4_taf_data = get_reports.get_latest_taf(icao4)
         self.icao4_data.update_icao_data(icao4,
                                          icao4_metar_data[0],
                                          icao4_metar_data[1],
@@ -229,8 +229,8 @@ class Controller:
                                           self.main_view)
 
         icao5 = self.main_view.app_view.icao5.get()
-        icao5_metar_data = get_xml_data.get_latest_metar(icao5)
-        icao5_taf_data = get_xml_data.get_latest_taf(icao5)
+        icao5_metar_data = get_reports.get_latest_metar(icao5)
+        icao5_taf_data = get_reports.get_latest_taf(icao5)
         self.icao5_data.update_icao_data(icao5, icao5_metar_data[0],
                                          icao5_metar_data[1],
                                          icao5_taf_data[0],
@@ -242,8 +242,8 @@ class Controller:
                                           self.main_view)
 
         icao6 = self.main_view.app_view.icao6.get()
-        icao6_metar_data = get_xml_data.get_latest_metar(icao6)
-        icao6_taf_data = get_xml_data.get_latest_taf(icao6)
+        icao6_metar_data = get_reports.get_latest_metar(icao6)
+        icao6_taf_data = get_reports.get_latest_taf(icao6)
         self.icao6_data.update_icao_data(icao6,
                                          icao6_metar_data[0],
                                          icao6_metar_data[1],
@@ -256,8 +256,8 @@ class Controller:
                                           self.main_view)
 
         icao7 = self.main_view.app_view.icao7.get()
-        icao7_metar_data = get_xml_data.get_latest_metar(icao7)
-        icao7_taf_data = get_xml_data.get_latest_taf(icao7)
+        icao7_metar_data = get_reports.get_latest_metar(icao7)
+        icao7_taf_data = get_reports.get_latest_taf(icao7)
         self.icao7_data.update_icao_data(icao7,
                                          icao7_metar_data[0],
                                          icao7_metar_data[1],
@@ -270,8 +270,8 @@ class Controller:
                                           self.main_view)
 
         icao8 = self.main_view.app_view.icao8.get()
-        icao8_metar_data = get_xml_data.get_latest_metar(icao8)
-        icao8_taf_data = get_xml_data.get_latest_taf(icao8)
+        icao8_metar_data = get_reports.get_latest_metar(icao8)
+        icao8_taf_data = get_reports.get_latest_taf(icao8)
         self.icao8_data.update_icao_data(icao8,
                                          icao8_metar_data[0],
                                          icao8_metar_data[1],
@@ -284,8 +284,8 @@ class Controller:
                                           self.main_view)
 
         icao9 = self.main_view.app_view.icao9.get()
-        icao9_metar_data = get_xml_data.get_latest_metar(icao9)
-        icao9_taf_data = get_xml_data.get_latest_taf(icao9)
+        icao9_metar_data = get_reports.get_latest_metar(icao9)
+        icao9_taf_data = get_reports.get_latest_taf(icao9)
         self.icao9_data.update_icao_data(icao9,
                                          icao9_metar_data[0],
                                          icao9_metar_data[1],
@@ -325,16 +325,16 @@ class Controller:
                                                    '%d%H%M Z'))
         self.main_view.controls_view.time.set(timestamp)
 
-        get_xml_data.update_report_data(self.main_view.app_view.icao0.get(),
-                                        self.main_view.app_view.icao1.get(),
-                                        self.main_view.app_view.icao2.get(),
-                                        self.main_view.app_view.icao3.get(),
-                                        self.main_view.app_view.icao4.get(),
-                                        self.main_view.app_view.icao5.get(),
-                                        self.main_view.app_view.icao6.get(),
-                                        self.main_view.app_view.icao7.get(),
-                                        self.main_view.app_view.icao8.get(),
-                                        self.main_view.app_view.icao9.get())
+        get_reports.update_report_data(self.main_view.app_view.icao0.get(),
+                                       self.main_view.app_view.icao1.get(),
+                                       self.main_view.app_view.icao2.get(),
+                                       self.main_view.app_view.icao3.get(),
+                                       self.main_view.app_view.icao4.get(),
+                                       self.main_view.app_view.icao5.get(),
+                                       self.main_view.app_view.icao6.get(),
+                                       self.main_view.app_view.icao7.get(),
+                                       self.main_view.app_view.icao8.get(),
+                                       self.main_view.app_view.icao9.get())
         # Now we have latest data, update the display fields
         self.update_display()
 

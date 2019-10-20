@@ -23,14 +23,14 @@ def resource_path(relative):
 def format_datetime(isotime):
     """Format iso time e.g. 2017-08-09T12:41:00Z into 091241Z format
     commonly used in Meteorology """
-    if isotime is not '':
-        dtg = datetime.datetime.strptime(isotime, "%Y-%m-%dT%H:%M:%SZ")
-        display_dtg = dtg.strftime("%d%H%MZ")
+    # if isotime is not '':
+    #     dtg = datetime.datetime.strptime(isotime, "%Y-%m-%dT%H:%M:%SZ")
+    #     display_dtg = dtg.strftime("%d%H%MZ")
+    #
+    # else:
+    #     display_dtg = ''
 
-    else:
-        display_dtg = ''
-
-    return display_dtg
+    return isotime
 
 
 class UpdateFields:
