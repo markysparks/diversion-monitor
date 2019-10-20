@@ -157,7 +157,7 @@ class Controller:
         (METAR/SPECI/TAF) and update the station dictionary with the new data.
         Then update the window fields. Note 'check_metars_tafs() should always
         be called before updating the display to ensure that the latest data
-        has been retried from the WFS server"""
+        has been retrieved from the WFS server"""
         icao0 = self.main_view.app_view.icao0.get()
         icao0_metar_data = get_xml_data.get_latest_metar(icao0)
         icao0_taf_data = get_xml_data.get_latest_taf(icao0)
