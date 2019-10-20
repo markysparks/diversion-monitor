@@ -47,7 +47,7 @@ def update_report_data(icao0='', icao1='', icao2='', icao3='', icao4='', icao5='
 
     # Check we have a response to our query before proceeding then for each ICAO specified
     # search the response for a matching METAR.
-    if response_metars is not None:
+    if response_metars is not '':
         for icao in icao_list:
             metar = re.search(icao + '\s\d\d\d\d\d\dZ[\s\S\d\D\w\W]+?\\n\\n', response_metars.text)
             if metar:
@@ -61,7 +61,7 @@ def update_report_data(icao0='', icao1='', icao2='', icao3='', icao4='', icao5='
 
     # Check we have a response to our query before proceeding then for each ICAO specified
     # search the response for a matching METAR.
-    if response_tafs is not None:
+    if response_tafs is not '':
         for icao in icao_list:
             taf = re.search(icao + '\s\d\d\d\d\d\dZ[\s\S\d\D\w\W]+?\\n\\n', response_tafs.text)
             if taf:
