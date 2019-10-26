@@ -122,7 +122,7 @@ class Controller:
 
     def run(self):
         """Start the application"""
-        self.root.title('Diversion Monitor v1.4')
+        self.root.title('Diversion Monitor v1.5')
         self.root.deiconify()
         self.root.mainloop()
 
@@ -142,7 +142,7 @@ class Controller:
         """Set a schedule for collecting and checking for messages from the
         WFS server using a background scheduler."""
         scheduler = BackgroundScheduler()
-        trigger = IntervalTrigger(seconds=300)  # check every 5 mins (300msec)
+        trigger = IntervalTrigger(seconds=180)  # check every 3 mins
         scheduler.add_job(self.check_metars_tafs, trigger)
         scheduler.start()
 
