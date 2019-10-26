@@ -7,7 +7,6 @@ from tkinter import messagebox as tkMessageBox
 __author__ = 'Mark Baker  email: mark.baker@metoffice.gov.uk'
 
 icao_metars = []
-icao_speci = []
 icao_tafs = []
 regex_issue_time = re.compile('\d\d\d\d\d\dZ')
 
@@ -15,7 +14,6 @@ regex_issue_time = re.compile('\d\d\d\d\d\dZ')
 def update_report_data(icao0='', icao1='', icao2='', icao3='', icao4='', icao5='', icao6='', icao7='', icao8='', icao9=''):
     socket.setdefaulttimeout(8)
     response_metars = ''
-    response_speci = ''
     response_tafs = ''
 
     icao_list = [icao0, icao1, icao2, icao3, icao4, icao5, icao6, icao7, icao8, icao9]
@@ -25,9 +23,6 @@ def update_report_data(icao0='', icao1='', icao2='', icao3='', icao4='', icao5='
                   '&stn06=' + icao5 + '&stn07=' + icao6 + '&stn08=' + icao7 + '&stn09=' + icao8 + '&stn10=' + icao9
 
     db_rqst_str_metars = 'http://mdbdb-prod/cgi-bin/moods/webret.pl?pageType=mainpage&subtype=METARS&system=mdbdb' \
-                         '-prod&idType=ICAO' + station_str + '&submit=Retrieve+Latest+Report'
-
-    db_rqst_str_speci = 'http://mdbdb-prod/cgi-bin/moods/webret.pl?pageType=mainpage&subtype=SPECI&system=mdbdb' \
                          '-prod&idType=ICAO' + station_str + '&submit=Retrieve+Latest+Report'
 
     db_rqst_str_tafs = 'http://mdbdb-prod/cgi-bin/moods/webret.pl?pageType=mainpage&subtype=TAFS&system=mdbdb' \
@@ -44,7 +39,6 @@ def update_report_data(icao0='', icao1='', icao2='', icao3='', icao4='', icao5='
     # Query to get the latest METAR web page result
     try:
         response_metars = requests.get(db_rqst_str_metars)
-        response_speci = requests.get(db_rqst_str_speci)
         response_tafs = requests.get(db_rqst_str_tafs)
     except requests.exceptions.RequestException as e:
         pass
@@ -65,25 +59,6 @@ def update_report_data(icao0='', icao1='', icao2='', icao3='', icao4='', icao5='
         metar_last = re.search(icao9 + '\s\d\d\d\d\d\dZ[\s\S\d\D\w\W]+?\\n\s</pre>', response_metars.text)
         if metar_last:
             icao_metars.append(metar_last.group())
-
-    # Check we have a response to our query before proceeding then for each ICAO specified
-    # search the response for a matching SPECI.
-    if response_speci is not '':
-        icao_speci.clear()
-        for icao in icao_list:
-            speci = re.search(icao + '\s\d\d\d\d\d\dZ[\s\S\d\D\w\W]+?\\n\\n', response_speci.text)
-            if speci:
-                icao_speci.append(speci.group())
-                icao_metars.append(icao_speci)
-
-        # Different search expression required for last METAR in list list due to MetDB web page
-        # response formatting.
-        speci_last = re.search(icao9 + '\s\d\d\d\d\d\dZ[\s\S\d\D\w\W]+?\\n\s</pre>', response_speci.text)
-        if speci_last:
-            icao_speci.append(speci_last.group())
-            icao_metars.append(icao_speci)
-
-    icao_metars.reverse()
 
     # Check we have a response to our query before proceeding then for each ICAO specified
     # search the response for a matching TAF.
