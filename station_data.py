@@ -28,6 +28,13 @@ class StationData:
         self.station_dict['METAR'] = ''
         self.station_dict['TAF'] = ''
 
+        taf_colour = metar_tools.get_colourstate_nbr(new_taf)
+        metar_colour = metar_tools.get_colourstate_nbr(new_metar)
+        print('TAF colour=')
+        print(taf_colour)
+        print('METAR colour=')
+        print(metar_colour)
+
         if icao is not '':
 
             try:
@@ -91,7 +98,6 @@ class StationData:
                         self.station_dict['TAF_STATUS'] = 1
                     else:
                         self.station_dict['TAF_STATUS'] = 0
-
                 else:
                     """If no metar is found for the specified ICAO, just set 
                     the ICAO field of the object. Need to do this
@@ -109,3 +115,12 @@ class StationData:
                                  'TAF_TIME': '', 'TAF': '',
                                  'TAF_MIN_COLOUR': 0, 'TAF_STATUS': 2,
                                  'NEW_METAR': True}
+
+    def taf_status(self, taf, latest_metar):
+        taf_colour = metar_tools.get_colourstate_nbr(taf)
+        metar_colour = metar_tools.get_colourstate_nbr(latest_metar)
+        print('TAF colour=')
+        print(taf_colour)
+        print('METAR colour=')
+        print(metar_colour)
+
