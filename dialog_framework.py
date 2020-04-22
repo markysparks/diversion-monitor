@@ -28,7 +28,8 @@ class Dialog(tk.Toplevel):
         body.pack(padx=5, pady=5)
 
         self.buttonbox()
-
+        # Following required on Linux
+        # self.wait_visibility()
         self.grab_set()
 
         if not self.initial_focus:

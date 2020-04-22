@@ -1,9 +1,7 @@
-
 import sys
 from lxml import etree
 import socket
 import requests
-
 
 if sys.version_info[0] < 3:
     import tkMessageBox
@@ -22,8 +20,9 @@ def update_report_data(icao0, icao1, icao2, icao3, icao4, icao5, icao6, icao7,
     global root
     socket.setdefaulttimeout(5)
 
-    icao_string = icao0+','+icao1+','+icao2+','+icao3+','+icao4+','+icao5+','\
-                  +icao6+','+icao7+','+icao8+','+icao9
+    icao_string = icao0 + ',' + icao1 + ',' + icao2 + ',' + icao3 + ',' \
+        + icao4 + ',' + icao5 + ',' + icao6 + ',' + icao7 + ',' \
+        + icao8 + ',' + icao9
 
     # save_icao_list(icao_list) # Save the currently entered ICAO's
     # between sessions.
@@ -34,7 +33,7 @@ def update_report_data(icao0, icao1, icao2, icao3, icao4, icao5, icao6, icao7,
                                 ('http://exvinnsandbxvw02:8008/OBSERVATIONS?'
                                  'SERVICE=WFS&VERSION=1.0.0&REQUEST'
                                  '=GetFeature&TYPENAME=LatestMETAR,'
-                                 'LatestTAF&ICAO='+icao_string,
+                                 'LatestTAF&ICAO=' + icao_string,
                                  timeout=9,
                                  headers={'Connection': 'close'}).content)
 
@@ -113,4 +112,3 @@ if __name__ == "__main__":
     (ICAO's must be included in update report data call above"""
     print(get_latest_metar('EGUW'))
     print(get_latest_taf('EGUW'))
-

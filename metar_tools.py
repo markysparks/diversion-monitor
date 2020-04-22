@@ -22,7 +22,7 @@ def get_vis_fm_mtrs(message):
     message_txt = metar_no_trend(message)
 
     search_string_digits = """(\d\d\d\d)"""
-    search_string_metres = """(\s?)(\d\d\d\d[N,S,E,W]*[E,W]*)(\s)(\d\d\d\d)?"""
+    search_string_metres = """(\s)(\d\d\d\d[N,S,E,W]*[E,W]*)(\s)(\d\d\d\d)?"""
     vis_list_metres = re.findall(search_string_metres, message_txt)
     vis_list_str = "(" + ', '.join(map(str, vis_list_metres)) + ")"
     vis_list_metres = re.findall(search_string_digits, vis_list_str)
@@ -114,8 +114,8 @@ def get_colourstate_nbr(report_txt):
 
     visibility = get_vis_fm_mtrs(report_txt)
     cloudbase = get_sig_cloud_height(report_txt)
-    # print('vis: ' + str(visibility))
-    # print('cloud: ' + str(cloudbase))
+    print('vis: ' + str(visibility))
+    print('cloud: ' + str(cloudbase))
 
     if visibility == -1 or cloudbase == -1:
         colourstate_nbr = 0  # GREY - unable to determine colourstate
